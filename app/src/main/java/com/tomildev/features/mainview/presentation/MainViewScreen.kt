@@ -1,35 +1,143 @@
 package com.tomildev.features.mainview.presentation
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
+import com.tomildev.core.presentation.components.cards.InformationCard
+import com.tomildev.core.presentation.components.spacers.VerticalSpacer
+import com.tomildev.core.presentation.components.texts.Texts
 import com.tomildev.weathy.ui.theme.Dimens
 import com.tomildev.weathy.ui.theme.WeathyDrawables
 
 @Composable
 fun MainViewScreen(modifier: Modifier = Modifier) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
+    val defaultBackground = painterResource(WeathyDrawables.Backgrounds.Thunderstorm)
+
+    Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
         Column(
-            modifier = modifier
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(innerPadding)
                 .padding(Dimens.ScreenHorizontalPadding)
         ) {
-            Row(modifier = modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
-                    painter = painterResource(WeathyDrawables.Icons.ClearSky),
-                    contentDescription = null
+                    modifier = Modifier
+                        .padding(end = Dimens.SpacingSmall)
+                        .size(Dimens.IconSizeLarge),
+                    painter = painterResource(WeathyDrawables.Icons.Gps),
+                    contentDescription = null,
+                    tint = Color(0xFF3b82f6)
                 )
-                Texts
+                Column(modifier = Modifier.weight(1f)) {
+                    Texts.TitleSmall(text = "Cartagena de Indias")
+                    Texts.Body(text = "Colombia", isSecondary = true)
+                }
+                IconButton(
+                    onClick = { TODO("onRefresh()") },
+                ) {
+                    Icon(
+                        modifier = Modifier.size(Dimens.IconSizeMedium),
+                        painter = painterResource(WeathyDrawables.Icons.Refresh),
+                        contentDescription = null,
+                        tint = Color(0xFF94a3b8)
+                    )
+                }
+            }
+            VerticalSpacer(Dimens.SpacingSmall)
+            Box(contentAlignment = Alignment.Center) {
+                Column(
+                    modifier = Modifier.zIndex(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Texts.Headline(
+                        text = "25.7 C",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Texts.Body(
+                        text = "Hoy 10:30",
+                        color = Color.White,
+                        isSecondary = true
+                    )
+                    VerticalSpacer(Dimens.SpacingSmall)
+                    Card(
+                        modifier = Modifier,
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceContainer
+                        ),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 15.dp, vertical = 5.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                modifier = Modifier
+                                    .padding(end = Dimens.SpacingTiny)
+                                    .size(Dimens.IconSizeNormal),
+                                painter = painterResource(WeathyDrawables.Icons.ClearSky),
+                                contentDescription = null,
+                                tint = Color.Unspecified
+                            )
+                            Texts.Body(
+                                text = "Nublado"
+                            )
+                        }
+                    }
+                }
+                Image(
+                    modifier = Modifier.fillMaxWidth(),
+                    painter = defaultBackground,
+                    contentDescription = null,
+                )
+            }
+            VerticalSpacer(Dimens.SpacingSmall)
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                InformationCard(
+                    icon = WeathyDrawables.Icons.WaterDroplet,
+                    iconColor = Color(0xFF3b82f6),
+                    data = "98%",
+                    dataDescription = "Humedad"
+                )
+                InformationCard(
+                    icon = WeathyDrawables.Icons.Wind,
+                    iconColor = Color(0xFF2dd4bf),
+                    data = "98%",
+                    dataDescription = "Humedad"
+                )
+                InformationCard(
+                    icon = WeathyDrawables.Icons.Pressure,
+                    iconColor = Color(0xFFfbbf24),
+                    data = "98%",
+                    dataDescription = "Humedad"
+                )
             }
         }
-
     }
 }

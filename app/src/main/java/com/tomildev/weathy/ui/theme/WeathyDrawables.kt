@@ -6,6 +6,11 @@ import com.tomildev.weathy.R
 object WeathyDrawables {
 
     object Icons {
+        @DrawableRes val Pressure = R.drawable.ic_pressure
+        @DrawableRes val WaterDroplet = R.drawable.ic_water_droplet
+        @DrawableRes val Wind = R.drawable.ic_wind
+        @DrawableRes val Gps = R.drawable.ic_gps
+        @DrawableRes val Refresh = R.drawable.ic_refresh
         @DrawableRes val ClearSky = R.drawable.ic_color_clear_sky
         @DrawableRes val MainlyClear = R.drawable.ic_color_mainly_clear
         @DrawableRes val PartlyCloudy = R.drawable.ic_color_partly_cloudy

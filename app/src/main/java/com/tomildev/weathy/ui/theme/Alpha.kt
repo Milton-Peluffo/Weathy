@@ -1,4 +1,4 @@
-package com.tomildev.habitii.ui.theme
+package com.tomildev.weathy.ui.theme
 
 object Alpha {
     /** 1.0f - No transparency. Used for primary content and fully opaque elements. */

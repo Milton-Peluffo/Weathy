@@ -1,7 +1,6 @@
 package com.tomildev.weathy.ui.theme
 
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -13,6 +12,9 @@ import androidx.compose.ui.platform.LocalContext
 private val DarkColorScheme = darkColorScheme(
     primary = White100, //Buttons
     onPrimary = Black0, //on buttons or chips
+
+    background = Black0, //Screen background
+    onBackground = White100,
 
     surface = Black0, //Screen background
     onSurface = White100, //Texts or icons on screen background
@@ -33,7 +35,10 @@ private val LightColorScheme = lightColorScheme(
     primary = Black0, //on buttons or chips
     onPrimary = White100, //on buttons
 
-    surface = White90, //Screen background
+    background = White100, //Screen background (Fondo blanco puro sin tinte rosado)
+    onBackground = Black0,
+
+    surface = White100, //Screen background (White100 = #FDFDFD)
     onSurface = Black0, //Texts or icons on screen background
 
     surfaceContainer = White100, //Card / Box / or any container
@@ -50,7 +55,8 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun WeathyTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    //darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {

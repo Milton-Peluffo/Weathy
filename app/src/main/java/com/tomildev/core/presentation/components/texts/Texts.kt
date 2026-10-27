@@ -10,7 +10,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.tomildev.habitii.ui.theme.Alpha
+import com.tomildev.weathy.ui.theme.Alpha
 
 object Texts {
 
@@ -20,11 +20,13 @@ object Texts {
         text: String,
         fontWeight: FontWeight? = null,
         style: TextStyle? = null,
+        color: Color = Color.Unspecified,
         textAlign: TextAlign = TextAlign.Start
     ) {
         AppText(
             modifier = modifier,
             text = text,
+            color = color,
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = fontWeight,
             overrideStyle = style,

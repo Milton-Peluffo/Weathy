@@ -25,7 +25,8 @@ object Dimens {
     val ComponentHeightNormal = 45.dp
     val ComponentHeightSmall = 30.dp
     val IconSizeHuge = 85.dp
-    val IconSizeLarge = 45.dp
+    val IconSizeExtraLarge = 45.dp
+    val IconSizeLarge = 32.dp
     val IconSizeMedium = 28.dp
     val IconSizeNormal = 24.dp
     val IconSizeSmall = 20.dp
