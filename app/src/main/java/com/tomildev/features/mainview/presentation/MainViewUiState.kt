@@ -1,8 +1,11 @@
 package com.tomildev.features.mainview.presentation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import com.tomildev.core.domain.model.WeatherInfo
 
-@Composable
-fun MainViewUiState(modifier: Modifier = Modifier) {
-}
+data class MainViewUiState(
+    val weatherInfo: WeatherInfo? = null,
+    val cityName: String = "Cartagena de Indias",
+    val countryName: String = "Colombia",
+    val isLoading: Boolean = false,
+    val error: String? = null,
+)

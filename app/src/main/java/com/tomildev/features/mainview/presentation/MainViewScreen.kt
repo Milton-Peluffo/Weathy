@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +16,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tomildev.core.presentation.components.cards.InformationCard
 import com.tomildev.core.presentation.components.spacers.VerticalSpacer
 import com.tomildev.core.presentation.components.texts.Texts
@@ -31,9 +33,14 @@ import com.tomildev.weathy.ui.theme.Dimens
 import com.tomildev.weathy.ui.theme.WeathyDrawables
 
 @Composable
-fun MainViewScreen(modifier: Modifier = Modifier) {
+fun MainViewScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewViewModel = viewModel()
+) {
 
-    val defaultBackground = painterResource(WeathyDrawables.Backgrounds.Thunderstorm)
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val currentWeather = uiState.weatherInfo?.currentWeather
+    val weatherType = currentWeather?.weatherType
 
     Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
         Column(
@@ -55,11 +62,11 @@ fun MainViewScreen(modifier: Modifier = Modifier) {
                     tint = Color(0xFF3b82f6)
                 )
                 Column(modifier = Modifier.weight(1f)) {
-                    Texts.TitleSmall(text = "Cartagena de Indias")
-                    Texts.Body(text = "Colombia", isSecondary = true)
+                    Texts.TitleSmall(text = uiState.cityName)
+                    Texts.Body(text = uiState.countryName, isSecondary = true)
                 }
                 IconButton(
-                    onClick = { TODO("onRefresh()") },
+                    onClick = { viewModel.loadWeatherInfo() },
                 ) {
                     Icon(
                         modifier = Modifier.size(Dimens.IconSizeMedium),
@@ -76,12 +83,12 @@ fun MainViewScreen(modifier: Modifier = Modifier) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Texts.Headline(
-                        text = "25.7 C",
+                        text = "${currentWeather?.temperature} °C",
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
                     Texts.Body(
-                        text = "Hoy 10:30",
+                        text = "Hoy",
                         color = Color.White,
                         isSecondary = true
                     )
@@ -101,41 +108,48 @@ fun MainViewScreen(modifier: Modifier = Modifier) {
                                 modifier = Modifier
                                     .padding(end = Dimens.SpacingTiny)
                                     .size(Dimens.IconSizeNormal),
-                                painter = painterResource(WeathyDrawables.Icons.ClearSky),
+                                painter = painterResource(
+                                    weatherType?.iconRes ?: WeathyDrawables.Icons.ClearSky
+                                ),
                                 contentDescription = null,
                                 tint = Color.Unspecified
                             )
                             Texts.Body(
-                                text = "Nublado"
+                                text = weatherType?.weatherDesc ?: "Empty",
                             )
                         }
                     }
                 }
                 Image(
                     modifier = Modifier.fillMaxWidth(),
-                    painter = defaultBackground,
+                    painter = painterResource(
+                        weatherType?.backgroundRes ?: WeathyDrawables.Backgrounds.ClearSky
+                    ),
                     contentDescription = null,
                 )
             }
             VerticalSpacer(Dimens.SpacingSmall)
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 InformationCard(
                     icon = WeathyDrawables.Icons.WaterDroplet,
                     iconColor = Color(0xFF3b82f6),
-                    data = "98%",
+                    data = "${currentWeather?.humidity?.toInt()}%",
                     dataDescription = "Humedad"
                 )
                 InformationCard(
                     icon = WeathyDrawables.Icons.Wind,
                     iconColor = Color(0xFF2dd4bf),
-                    data = "98%",
-                    dataDescription = "Humedad"
+                    data = "${currentWeather?.windSpeed?.toString()} km/h",
+                    dataDescription = "Viento"
                 )
                 InformationCard(
                     icon = WeathyDrawables.Icons.Pressure,
                     iconColor = Color(0xFFfbbf24),
-                    data = "98%",
-                    dataDescription = "Humedad"
+                    data = "${currentWeather?.pressure?.toInt()} hPa",
+                    dataDescription = "Presión"
                 )
             }
         }
