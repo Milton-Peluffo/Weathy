@@ -1,183 +1,185 @@
 package com.tomildev.weathy.core.domain.model
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import com.tomildev.weathy.R
 import com.tomildev.weathy.ui.theme.WeathyDrawables
 
 sealed class WeatherType(
-    val weatherDesc: String,
+    @StringRes val weatherDescRes: Int,
     @DrawableRes val iconRes: Int,
     @DrawableRes val backgroundRes: Int
 ) {
     object ClearSky : WeatherType(
-        weatherDesc = "Despejado",
+        weatherDescRes = R.string.weather_code_description_clear_sky,
         iconRes = WeathyDrawables.Icons.ClearSky,
         backgroundRes = WeathyDrawables.Backgrounds.ClearSky
     )
 
     object MainlyClear : WeatherType(
-        weatherDesc = "Principalmente despejado",
+        weatherDescRes = R.string.weather_code_description_mainly_clear,
         iconRes = WeathyDrawables.Icons.MainlyClear,
         backgroundRes = WeathyDrawables.Backgrounds.MainlyClear
     )
 
     object PartlyCloudy : WeatherType(
-        weatherDesc = "Parcialmente nublado",
+        weatherDescRes = R.string.weather_code_description_partly_cloudy,
         iconRes = WeathyDrawables.Icons.PartlyCloudy,
         backgroundRes = WeathyDrawables.Backgrounds.PartlyCloudy
     )
 
     object Overcast : WeatherType(
-        weatherDesc = "Nublado",
+        weatherDescRes = R.string.weather_code_description_overcast,
         iconRes = WeathyDrawables.Icons.Overcast,
         backgroundRes = WeathyDrawables.Backgrounds.Overcast
     )
 
     object Fog : WeatherType(
-        weatherDesc = "Niebla / Foggy",
+        weatherDescRes = R.string.weather_code_description_fog,
         iconRes = WeathyDrawables.Icons.Fog,
         backgroundRes = WeathyDrawables.Backgrounds.Fog
     )
 
     object DepositingRimeFog : WeatherType(
-        weatherDesc = "Niebla escarchada",
+        weatherDescRes = R.string.weather_code_description_depositing_rime_fog,
         iconRes = WeathyDrawables.Icons.DepositingRimeFog,
         backgroundRes = WeathyDrawables.Backgrounds.DepositingRimeFog
     )
 
     object LightDrizzle : WeatherType(
-        weatherDesc = "Llovizna ligera",
+        weatherDescRes = R.string.weather_code_description_light_drizzle,
         iconRes = WeathyDrawables.Icons.LightDrizzle,
         backgroundRes = WeathyDrawables.Backgrounds.LightDrizzle
     )
 
     object ModerateDrizzle : WeatherType(
-        weatherDesc = "Llovizna moderada",
+        weatherDescRes = R.string.weather_code_description_moderate_drizzle,
         iconRes = WeathyDrawables.Icons.ModerateDrizzle,
         backgroundRes = WeathyDrawables.Backgrounds.ModerateDrizzle
     )
 
     object DenseDrizzle : WeatherType(
-        weatherDesc = "Llovizna densa",
+        weatherDescRes = R.string.weather_code_description_dense_drizzle,
         iconRes = WeathyDrawables.Icons.DenseDrizzle,
         backgroundRes = WeathyDrawables.Backgrounds.DenseDrizzle
     )
 
     object LightFreezingDrizzle : WeatherType(
-        weatherDesc = "Llovizna helada ligera",
+        weatherDescRes = R.string.weather_code_description_light_freezing_drizzle,
         iconRes = WeathyDrawables.Icons.LightFreezingDrizzle,
         backgroundRes = WeathyDrawables.Backgrounds.LightFreezingDrizzle
     )
 
     object DenseFreezingDrizzle : WeatherType(
-        weatherDesc = "Llovizna helada densa",
+        weatherDescRes = R.string.weather_code_description_dense_freezing_drizzle,
         iconRes = WeathyDrawables.Icons.DenseFreezingDrizzle,
         backgroundRes = WeathyDrawables.Backgrounds.DenseFreezingDrizzle
     )
 
     object SlightRain : WeatherType(
-        weatherDesc = "Lluvia ligera",
+        weatherDescRes = R.string.weather_code_description_slight_rain,
         iconRes = WeathyDrawables.Icons.SlightRain,
         backgroundRes = WeathyDrawables.Backgrounds.SlightRain
     )
 
     object ModerateRain : WeatherType(
-        weatherDesc = "Lluvia moderada",
+        weatherDescRes = R.string.weather_code_description_moderate_rain,
         iconRes = WeathyDrawables.Icons.ModerateRain,
         backgroundRes = WeathyDrawables.Backgrounds.ModerateRain
     )
 
     object HeavyRain : WeatherType(
-        weatherDesc = "Lluvia fuerte",
+        weatherDescRes = R.string.weather_code_description_heavy_rain,
         iconRes = WeathyDrawables.Icons.HeavyRain,
         backgroundRes = WeathyDrawables.Backgrounds.HeavyRain
     )
 
     object LightFreezingRain : WeatherType(
-        weatherDesc = "Lluvia congelante ligera",
+        weatherDescRes = R.string.weather_code_description_light_freezing_rain,
         iconRes = WeathyDrawables.Icons.LightFreezingRain,
         backgroundRes = WeathyDrawables.Backgrounds.LightFreezingRain
     )
 
     object HeavyFreezingRain : WeatherType(
-        weatherDesc = "Lluvia congelante fuerte",
+        weatherDescRes = R.string.weather_code_description_heavy_freezing_rain,
         iconRes = WeathyDrawables.Icons.HeavyFreezingRain,
         backgroundRes = WeathyDrawables.Backgrounds.HeavyFreezingRain
     )
 
     object SlightSnowfall : WeatherType(
-        weatherDesc = "Nevada ligera",
+        weatherDescRes = R.string.weather_code_description_slight_snowfall,
         iconRes = WeathyDrawables.Icons.SlightSnowfall,
         backgroundRes = WeathyDrawables.Backgrounds.SlightSnowfall
     )
 
     object ModerateSnowfall : WeatherType(
-        weatherDesc = "Nevada moderada",
+        weatherDescRes = R.string.weather_code_description_moderate_snowfall,
         iconRes = WeathyDrawables.Icons.ModerateSnowfall,
         backgroundRes = WeathyDrawables.Backgrounds.ModerateSnowfall
     )
 
     object HeavySnowfall : WeatherType(
-        weatherDesc = "Nevada fuerte",
+        weatherDescRes = R.string.weather_code_description_heavy_snowfall,
         iconRes = WeathyDrawables.Icons.HeavySnowfall,
         backgroundRes = WeathyDrawables.Backgrounds.HeavySnowfall
     )
 
     object SnowGrains : WeatherType(
-        weatherDesc = "Granizo fino",
+        weatherDescRes = R.string.weather_code_description_snow_grains,
         iconRes = WeathyDrawables.Icons.SnowGrains,
         backgroundRes = WeathyDrawables.Backgrounds.SnowGrains
     )
 
     object SlightRainShowers : WeatherType(
-        weatherDesc = "Chubascos ligeros",
+        weatherDescRes = R.string.weather_code_description_slight_rain_showers,
         iconRes = WeathyDrawables.Icons.SlightRainShowers,
         backgroundRes = WeathyDrawables.Backgrounds.SlightRainShowers
     )
 
     object ModerateRainShowers : WeatherType(
-        weatherDesc = "Chubascos moderados",
+        weatherDescRes = R.string.weather_code_description_moderate_rain_showers,
         iconRes = WeathyDrawables.Icons.ModerateRainShowers,
         backgroundRes = WeathyDrawables.Backgrounds.ModerateRainShowers
     )
 
     object ViolentRainShowers : WeatherType(
-        weatherDesc = "Chubascos violentos",
+        weatherDescRes = R.string.weather_code_description_violent_rain_showers,
         iconRes = WeathyDrawables.Icons.ViolentRainShowers,
         backgroundRes = WeathyDrawables.Backgrounds.ViolentRainShowers
     )
 
     object SlightSnowShowers : WeatherType(
-        weatherDesc = "Chubascos de nieve ligeros",
+        weatherDescRes = R.string.weather_code_description_slight_snow_showers,
         iconRes = WeathyDrawables.Icons.SlightSnowShowers,
         backgroundRes = WeathyDrawables.Backgrounds.SlightSnowShowers
     )
 
     object HeavySnowShowers : WeatherType(
-        weatherDesc = "Chubascos de nieve fuertes",
+        weatherDescRes = R.string.weather_code_description_heavy_snow_showers,
         iconRes = WeathyDrawables.Icons.HeavySnowShowers,
         backgroundRes = WeathyDrawables.Backgrounds.HeavySnowShowers
     )
 
     object Thunderstorm : WeatherType(
-        weatherDesc = "Tormenta eléctrica",
+        weatherDescRes = R.string.weather_code_description_thunderstorm,
         iconRes = WeathyDrawables.Icons.Thunderstorm,
         backgroundRes = WeathyDrawables.Backgrounds.Thunderstorm
     )
 
     object ThunderstormWithSlightHail : WeatherType(
-        weatherDesc = "Tormenta con granizo ligero",
+        weatherDescRes = R.string.weather_code_description_thunderstorm_with_slight_hail,
         iconRes = WeathyDrawables.Icons.ThunderstormWithSlightHail,
         backgroundRes = WeathyDrawables.Backgrounds.ThunderstormWithSlightHail
     )
 
     object HeavyThunderstorm : WeatherType(
-        weatherDesc = "Tormenta eléctrica fuerte",
+        weatherDescRes = R.string.weather_code_description_heavy_thunderstorm,
         iconRes = WeathyDrawables.Icons.HeavyThunderstorm,
         backgroundRes = WeathyDrawables.Backgrounds.HeavyThunderstorm
     )
 
     object ThunderstormWithHeavyHail : WeatherType(
-        weatherDesc = "Tormenta con granizo fuerte",
+        weatherDescRes = R.string.weather_code_description_thunderstorm_with_heavy_hail,
         iconRes = WeathyDrawables.Icons.ThunderstormWithHeavyHail,
         backgroundRes = WeathyDrawables.Backgrounds.ThunderstormWithHeavyHail
     )

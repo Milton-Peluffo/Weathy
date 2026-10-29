@@ -30,7 +30,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun prvideWeatherRepository(api: WeatherApi): WeatherRepository {
+    fun provideWeatherRepository(api: WeatherApi): WeatherRepository {
         return WeatherRepositoryImpl(api)
     }
 

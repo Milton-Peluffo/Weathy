@@ -21,11 +21,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.tomildev.weathy.R
 import com.tomildev.weathy.core.presentation.components.cards.InformationCard
 import com.tomildev.weathy.core.presentation.components.spacers.VerticalSpacer
 import com.tomildev.weathy.core.presentation.components.texts.Texts
@@ -35,7 +37,7 @@ import com.tomildev.weathy.ui.theme.WeathyDrawables
 @Composable
 fun MainViewScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewViewModel = viewModel()
+    viewModel: MainViewViewModel = hiltViewModel()
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -88,7 +90,7 @@ fun MainViewScreen(
                         fontWeight = FontWeight.Bold
                     )
                     Texts.Body(
-                        text = "Hoy",
+                        text = stringResource(R.string.main_view_today),
                         color = Color.White,
                         isSecondary = true
                     )
@@ -115,7 +117,8 @@ fun MainViewScreen(
                                 tint = Color.Unspecified
                             )
                             Texts.Body(
-                                text = weatherType?.weatherDesc ?: "Empty",
+                                text = weatherType?.let { stringResource(it.weatherDescRes) }
+                                    ?: "Empty",
                             )
                         }
                     }
@@ -137,19 +140,19 @@ fun MainViewScreen(
                     icon = WeathyDrawables.Icons.WaterDroplet,
                     iconColor = Color(0xFF3b82f6),
                     data = "${currentWeather?.humidity?.toInt()}%",
-                    dataDescription = "Humedad"
+                    dataDescription = stringResource(R.string.main_view_humidity)
                 )
                 InformationCard(
                     icon = WeathyDrawables.Icons.Wind,
                     iconColor = Color(0xFF2dd4bf),
                     data = "${currentWeather?.windSpeed?.toString()} km/h",
-                    dataDescription = "Viento"
+                    dataDescription = stringResource(R.string.main_view_wind_speed)
                 )
                 InformationCard(
                     icon = WeathyDrawables.Icons.Pressure,
                     iconColor = Color(0xFFfbbf24),
                     data = "${currentWeather?.pressure?.toInt()} hPa",
-                    dataDescription = "Presión"
+                    dataDescription = stringResource(R.string.main_view_pressure)
                 )
             }
         }
